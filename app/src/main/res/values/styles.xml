@@ -11,4 +11,8 @@
         <style name="Theme.AppCompat.Light.NoActionBar" parent="@style/Theme.AppCompat.Light">
             <item name="android:windowNoTitle">true</item>
         </style>
+    <style name="FullScreenTheme">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
 </resources>

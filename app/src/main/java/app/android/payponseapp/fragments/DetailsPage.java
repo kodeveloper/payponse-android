@@ -1,6 +1,8 @@
 package app.android.payponseapp.fragments;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -14,6 +16,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.util.HashMap;
 
 import app.android.payponseapp.MainActivity;
 import app.android.payponseapp.R;
@@ -42,19 +46,35 @@ public class DetailsPage extends Fragment {
     }
 
     @OnClick(R.id.btnComplete) void completly(){
-    boolean result = new InputControl().detailsCheck(name.getText().toString(),
-            surname.getText().toString(),
-            mail.getText().toString(),
-            password.getText().toString(),
-            repass.getText().toString());
-        if(result) {
-            System.out.println("OK");
-            Intent intent = new Intent(getActivity(), MainActivity.class);
+        HashMap<String,String> result =InputControl.detailsCheck(
+                name.getText().toString(),
+                surname.getText().toString(),
+                mail.getText().toString(),
+                password.getText().toString(),
+                repass.getText().toString());
+
+        if(result.get("isOK").equals("1")){
+            Intent intent = new Intent(getActivity(),MainActivity.class);
             startActivity(intent);
             getActivity().finish();
-
+        }else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            Toast.makeText(getContext(),result.get("error_message"), Toast.LENGTH_SHORT).show();
         }
-        else
-            System.out.println("olmadı");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        try {
+            DetailsPage dp = new DetailsPage();
+            FragmentManager manager = getFragmentManager();
+            dp = (DetailsPage) manager.findFragmentByTag("detailsFragment");
+            FragmentTransaction transaction = manager.beginTransaction();
+            if (dp!=null){
+                transaction.remove(dp);
+                transaction.commit();
+            }
+        }
+        catch (Exception e){e.printStackTrace();}
     }
 }
