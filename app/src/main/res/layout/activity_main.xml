@@ -1,0 +1,58 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#901b242e">
+
+    <FrameLayout
+
+        android:layout_width="match_parent"
+        android:background="#ffffff"
+        android:layout_gravity="top"
+        android:padding="10dp"
+        android:layout_height="60dp">
+        <ImageView
+            android:layout_gravity="center|left"
+            android:src="@drawable/imgpsh_fullsize"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content" />
+
+        <com.github.siyamed.shapeimageview.CircularImageView
+            android:layout_gravity="right|center"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/okan" />
+    </FrameLayout>
+    <ImageView
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:id="@+id/imageView"/>
+
+    <FrameLayout
+
+        android:layout_gravity="bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:id="@+id/bottomLayout">
+        <ImageButton
+            android:layout_gravity="center|left"
+            android:layout_margin="10dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/las_pay" />
+        <ImageButton
+            android:layout_gravity="center|right"
+            android:layout_margin="10dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/setting" />
+        <ImageButton
+            android:id="@+id/btnPayponse"
+            android:layout_gravity="center"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/button_qr" />
+
+    </FrameLayout>
+</FrameLayout>
