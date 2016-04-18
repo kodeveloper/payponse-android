@@ -1,78 +1,61 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_gravity="center"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<LinearLayout
+    android:id="@+id/phoneContainer"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    tools:context="app.android.payponseapp.fragments.DetailsPage">
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditText
+        android:id="@+id/emailData"
+        android:background="#66ffffff"
+        android:textColorHint="#ffffff"
+        android:padding="10dp"
+        android:inputType="textEmailAddress"
+        android:hint="E-mail"
+        android:singleLine="true"
+        android:layout_marginTop="10dp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/nameData"
+        android:background="#66ffffff"
+        android:textColorHint="#ffffff"
+        android:padding="10dp"
+        android:hint="İsim"
+        android:singleLine="true"
+        android:layout_marginTop="10dp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/surnameData"
+        android:background="#66ffffff"
+        android:textColorHint="#ffffff"
+        android:padding="10dp"
+        android:hint="Soyisim"
+        android:singleLine="true"
+        android:layout_marginTop="10dp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:inputType="textPassword"
+        android:id="@+id/passwordData"
+        android:singleLine="true"
+        android:background="#66ffffff"
+        android:textColorHint="#ffffff"
+        android:padding="10dp"
+        android:hint="Şifre"
+        android:layout_marginTop="10dp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content" />
 
-        <LinearLayout
-            android:layout_gravity="center"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <EditText
-                android:padding="10dp"
-                android:textColorHint="#ffffff"
-                android:textColor="#ffffff"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/shape"
-                android:singleLine="true"
-                android:id="@+id/txtMail"
-                android:hint="E-mail"/>
-            <EditText
-                android:padding="10dp"
-                android:textColorHint="#ffffff"
-                android:textColor="#ffffff"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shape"
-                android:singleLine="true"
-                android:layout_marginBottom="10dp"
-                android:id="@+id/txtName"
-                android:hint="Adınız"/>
-
-            <EditText
-                android:padding="10dp"
-                android:textColorHint="#ffffff"
-                android:textColor="#ffffff"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shape"
-                android:singleLine="true"
-                android:layout_marginBottom="10dp"
-                android:id="@+id/txtSurname"
-                android:hint="Soyadınız"/>
-
-            <EditText
-                android:padding="10dp"
-                android:textColorHint="#ffffff"
-                android:textColor="#ffffff"
-                android:background="@drawable/shape"
-                android:singleLine="true"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:id="@+id/txtPass"
-                android:hint="Şifre"/>
-            <EditText
-                android:padding="10dp"
-                android:textColorHint="#ffffff"
-                android:textColor="#ffffff"
-                android:background="@drawable/shape"
-                android:singleLine="true"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:id="@+id/passAgain"
-                android:hint="Şifre Tekrar"/>
-            <Button
-                android:layout_gravity="bottom|right"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/next_button"
-                android:id="@+id/btnComplete"/>
-        </LinearLayout>
-    </FrameLayout>
-
+    <Button
+        android:id="@+id/completeRegister"
+        android:background="@drawable/radius"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:textColor="#000000"
+        android:textSize="15dp"
+        android:text="TAMAMLA"
+        android:layout_marginTop="5dp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content" />
+</LinearLayout>

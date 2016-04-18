@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#05000000"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="app.android.payponseapp.pages.addCartPage">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <movile.com.creditcardguide.view.CreditCardView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/creditCardView"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            app:labelOwner="Abdullah"
+            app:labelDateExp="11/12"/>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+               android:singleLine="true"
+                android:maxLength="16"
+                android:inputType="number"
+                android:digits="0123456789"
+                android:padding="10dp"
+                android:id="@+id/cartNumber"
+                android:background="@drawable/border"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Kart Üstendeki Rakamları Girin"/>
+            <EditText
+                android:padding="10dp"
+                android:inputType="textCapWords"
+                android:id="@+id/ownerName"
+                android:background="@drawable/border"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Kart Üstendeki İsmi Giriniz"/>
+            <EditText
+                android:maxLength="3"
+                android:inputType="number"
+                android:padding="10dp"
+                android:id="@+id/securityCode"
+                android:background="@drawable/border"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="CCV Kodunu giriniz"/>
+            <EditText
+                android:maxLength="4"
+                android:inputType="number"
+                android:padding="10dp"
+                android:id="@+id/lastDate"
+                android:background="@drawable/border"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Son kullanma tarihini giriniz."/>
+
+        </LinearLayout>
+        <Button
+            android:layout_marginTop="10dp"
+            android:layout_gravity="bottom|right"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kaydet"
+            android:background="@drawable/radius"
+            android:id="@+id/btnAdd"/>
+
+    </LinearLayout>
+
+</FrameLayout>
