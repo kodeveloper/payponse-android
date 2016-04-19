@@ -61,4 +61,33 @@ public  class InputControl {
         }
         return  hashResponse;
     }
+    public static HashMap<String,String> cardCheck(String cardNumber,String ownerName,String expireDate ,String ccv){
+        hashResponse.clear();
+        if (!cardNumber.isEmpty()&& !ownerName.isEmpty() && !expireDate.isEmpty() && !ccv.isEmpty()){
+
+            if (cardNumber.length()==16 && (cardNumber.substring(0,1).equals("4") ||cardNumber.substring(0,1).equals("5"))){
+                int Moon= Integer.parseInt(expireDate.substring(0,2));
+                int Year =Integer.parseInt(expireDate.substring(2,4));
+                if (Moon<Year){
+                    if (ccv.length()==3)
+                    hashResponse.put("isOK","1");
+                    else{
+                        hashResponse.put("isOK","0");
+                        hashResponse.put("error_message","CCV numaranızı kontrol ediniz.");
+                    }
+                }else{
+                    hashResponse.put("isOK","0");
+                    hashResponse.put("error_message","Son kullanma tarihi kontrol ediniz.");
+                }
+            }else{
+                hashResponse.put("isOK","0");
+                hashResponse.put("error_message","Kart numaranızı kontrol ediniz.");
+            }
+
+        }else{
+            hashResponse.put("isOK","0");
+            hashResponse.put("error_message","Boş alan Bırakmayınız.");
+        }
+        return hashResponse;
+    }
 }

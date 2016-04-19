@@ -25,6 +25,8 @@ import butterknife.OnTextChanged;
 import cz.msebera.android.httpclient.Header;
 import movile.com.creditcardguide.model.IssuerCode;
 import movile.com.creditcardguide.view.CreditCardView;
+import payponse.android.com.payponse.Checks.ConnectionControl;
+import payponse.android.com.payponse.Checks.InputControl;
 import payponse.android.com.payponse.Handlers.DBHandler;
 import payponse.android.com.payponse.MainActivity;
 import payponse.android.com.payponse.R;
@@ -112,12 +114,7 @@ public class AddCartPages extends AppCompatActivity {
 
     }
     @OnClick(R.id.btnAdd) void addCart(){
-        dialog= new ProgressDialog(this);
-        dialog.setMessage("Kart Tanımlanıyor.");
-        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        dialog.setCancelable(false);
-        dialog.show();
-         sendCartData();
+        controls();
     }
     void sendCartData(){
         String name =ownerName.getText().toString();
@@ -172,5 +169,27 @@ public class AddCartPages extends AppCompatActivity {
         ownerName.setText("");
         lastDate.setText("");
         scode.setText("");
+    }
+    void controls(){
+        dialog= new ProgressDialog(this);
+        dialog.setMessage("Veri Kontrolu");
+        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        dialog.setCancelable(false);
+        dialog.show();
+        Boolean connect = ConnectionControl.isAccess(this);
+        if (connect){
+            dialog.setMessage("Kart Tanımlanıyor.");
+            HashMap<String,String> result = InputControl.cardCheck(cartNumber.getText().toString(),ownerName.getText().toString(),lastDate.getText().toString(),scode.getText().toString());
+            if (result.get("isOK").equals("1"))
+                sendCartData();
+            else{
+                Toast.makeText(getApplicationContext(),result.get("error_message"),Toast.LENGTH_LONG).show();
+                dialog.dismiss();
+            }
+        }
+        else{
+            Toast.makeText(getApplicationContext(),"İnternet baglantınızı kontrol ediniz.",Toast.LENGTH_LONG).show();
+            dialog.dismiss();
+        }
     }
 }

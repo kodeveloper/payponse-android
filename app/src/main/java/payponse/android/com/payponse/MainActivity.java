@@ -71,13 +71,15 @@ public class MainActivity extends Activity {
             view = inflater.inflate(R.layout.list_cart, null);
             final CreditCardView card = (CreditCardView) view.findViewById(R.id.listCardView);
             card.setTextNumber(send.get("cart_number"));
-            System.out.println(send.get("cart_number").substring(0, 1));
             if (send.get("cart_number").substring(0,1).equals("4"))
                 card.chooseFlag(IssuerCode.VISAELECTRON);
             else
                 card.chooseFlag(IssuerCode.MASTERCARD);
 
-            card.setTextExpDate(send.get("last_date"));
+            String date_moon = send.get("last_date").substring(0,2);
+            String date_year = send.get("last_date").substring(2,4);
+            card.setTextExpDate(date_moon+"/"+date_year);
+
             card.setTextOwner(send.get("owner_name"));
             card.setTextCVV(send.get("ccv_code"));
             card.setId(Integer.parseInt(send.get("cart_id")));
@@ -85,7 +87,15 @@ public class MainActivity extends Activity {
             card.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getApplicationContext(), String.valueOf(card.getId()),Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), String.valueOf(card.getId()), Toast.LENGTH_LONG).show();
+                }
+            });
+            card.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    Toast.makeText(getApplicationContext(),"Uzun Basıldı.",Toast.LENGTH_LONG).show();
+
+                    return false;
                 }
             });
         }
