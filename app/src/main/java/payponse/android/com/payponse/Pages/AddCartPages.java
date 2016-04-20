@@ -1,6 +1,7 @@
 package payponse.android.com.payponse.Pages;
 
 import android.app.ActionBar;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -32,7 +33,7 @@ import payponse.android.com.payponse.MainActivity;
 import payponse.android.com.payponse.R;
 import payponse.android.com.payponse.Utils.UserDetails;
 
-public class AddCartPages extends AppCompatActivity {
+public class AddCartPages extends Activity {
 
     ProgressDialog dialog;
     @Bind(R.id.ownerName)EditText ownerName;

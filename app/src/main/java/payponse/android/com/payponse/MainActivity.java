@@ -3,9 +3,13 @@ package payponse.android.com.payponse;
 
 
 import android.app.Activity;
+
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 
@@ -13,6 +17,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -24,16 +29,21 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import movile.com.creditcardguide.model.IssuerCode;
 import movile.com.creditcardguide.view.CreditCardView;
+import payponse.android.com.payponse.Fragments.DetailsPage;
+import payponse.android.com.payponse.Fragments.ProfileFragment;
 import payponse.android.com.payponse.Handlers.DBHandler;
 import payponse.android.com.payponse.Pages.AddCartPages;
 import payponse.android.com.payponse.Pages.CameraPages;
 
 
 public class MainActivity extends Activity {
+    @Bind(R.id.plusView)
+    ImageView plus;
     ProgressDialog pDialog;
     @Bind(R.id.cardContainer)
     LinearLayout cardContainer;
     @OnClick(R.id.btnQrReader)
+
     void cameraPages() {
 
         Intent intent = new Intent(this, CameraPages.class);
@@ -49,6 +59,14 @@ public class MainActivity extends Activity {
 //        new AsyncCaller().execute();
     }
 
+    @OnClick(R.id.profile) void getProfile(){
+
+        FragmentManager manager = getFragmentManager();
+        ProfileFragment pf = new ProfileFragment(manager,getApplicationContext());
+        FragmentTransaction transaction =manager.beginTransaction();
+        transaction.add(R.id.mainLayout,pf,"profileFragment");
+        transaction.commit();
+    }
     @OnClick(R.id.addCart)
     void addCartPage() {
         Intent intent = new Intent(this, AddCartPages.class);
@@ -65,6 +83,7 @@ public class MainActivity extends Activity {
         List<HashMap<String,String>> list = handler.getAllCards();
         System.out.println(list.size());
         for (int i=0 ; i<list.size();i++){
+
             HashMap<String,String> send = list.get(i);
             View view;
             LayoutInflater inflater = (LayoutInflater)   this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -83,6 +102,7 @@ public class MainActivity extends Activity {
             card.setTextOwner(send.get("owner_name"));
             card.setTextCVV(send.get("ccv_code"));
             card.setId(Integer.parseInt(send.get("cart_id")));
+            plus.setVisibility(View.GONE);
             cardContainer.addView(view);
             card.setOnClickListener(new View.OnClickListener() {
                 @Override

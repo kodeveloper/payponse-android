@@ -1,4 +1,5 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainLayout"
     android:background="#ffffff"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -20,6 +21,12 @@
             android:background="#202b37"
             android:layout_width="match_parent"
             android:layout_height="250dp">
+            <ImageView
+                android:id="@+id/plusView"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/plus_square"/>
             <HorizontalScrollView
                 android:layout_gravity="center"
                 android:layout_width="match_parent"
@@ -28,7 +35,9 @@
                     android:id="@+id/cardContainer"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"></LinearLayout>
+                    android:layout_height="wrap_content">
+
+                </LinearLayout>
             </HorizontalScrollView>
         </FrameLayout>
 
@@ -92,6 +101,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <Button
+                    android:id="@+id/profile"
                     android:layout_marginRight="25dp"
                     android:background="@drawable/profile"
                     android:layout_width="40dp"

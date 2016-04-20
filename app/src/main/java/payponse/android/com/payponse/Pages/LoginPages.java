@@ -26,6 +26,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cz.msebera.android.httpclient.Header;
+import payponse.android.com.payponse.Checks.ConnectionControl;
 import payponse.android.com.payponse.Checks.InputControl;
 import payponse.android.com.payponse.MainActivity;
 import payponse.android.com.payponse.R;
@@ -41,16 +42,6 @@ public class LoginPages extends Activity {
     protected void onStart() {
         super.onStart();
         Picasso.with(this).load(R.drawable.backgrounds).fit().into(loginMain);
-        preferences=PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        if (preferences!=null) {
-            String login = preferences.getString("isLogin", "0");
-            if (login.equals("1")) {
-                Intent intent = new Intent(LoginPages.this, MainActivity.class);
-                intent.putExtra("user_id", preferences.getString("user_id", "0"));
-                startActivity(intent);
-                finish();
-            }
-        }
     }
 
     @Override
@@ -63,50 +54,58 @@ public class LoginPages extends Activity {
     @OnClick(R.id.LoginButton) void Login(){
         String phone = phoneNumber.getText().toString();
         String user_pass =password.getText().toString();
-        if(!phoneNumber.getText().toString().isEmpty() && !password.getText().toString().isEmpty() ) {
-            HashMap<String, String> result = InputControl.phoneCheck(phone);
-            if (result != null && result.get("isOK").equals("1")) {
-                RequestParams params = new RequestParams();
-                params.put("phone_data", phone);
-                params.put("password", user_pass);
-                client.post("http://kodeveloper.co/payponse/mobile/checkUser.php", params, new TextHttpResponseHandler() {
-                    @Override
-                    public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+        boolean active = ConnectionControl.isAccess(this);
+        if (active) {
+            if (!phoneNumber.getText().toString().isEmpty() && !password.getText().toString().isEmpty()) {
+                HashMap<String, String> result = InputControl.phoneCheck(phone);
+                if (result != null && result.get("isOK").equals("1")) {
+                    RequestParams params = new RequestParams();
+                    params.put("phone_data", phone);
+                    params.put("password", user_pass);
+                    client.post("http://kodeveloper.co/payponse/mobile/checkUser.php", params, new TextHttpResponseHandler() {
+                        @Override
+                        public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
 
-                    }
+                        }
 
-                    @Override
-                    public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                        @Override
+                        public void onSuccess(int statusCode, Header[] headers, String responseString) {
 
-                        if (statusCode == 200) {
-                            try {
-                                JSONObject resultObject = new JSONObject(responseString);
-                                if (resultObject.getString("isOK").equals("1")) {
-                                    preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                                    SharedPreferences.Editor editor = preferences.edit();
-                                    editor.putString("isLogin", "1");
-                                    editor.putString("user_id", resultObject.getString("user_id"));
-                                    editor.commit();
-                                    Intent intent = new Intent(LoginPages.this, MainActivity.class);
-                                    intent.putExtra("user_id", resultObject.getString("user_id"));
-                                    startActivity(intent);
-                                    finish();
-                                } else {
-                                    Toast.makeText(getApplicationContext(), resultObject.getString("error_message"), Toast.LENGTH_LONG).show();
+                            if (statusCode == 200) {
+                                try {
+                                    JSONObject resultObject = new JSONObject(responseString);
+                                    if (resultObject.getString("isOK").equals("1")) {
+                                        preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                                        SharedPreferences.Editor editor = preferences.edit();
+                                        editor.putString("isLogin", "1");
+                                        editor.putString("user_id", resultObject.getString("user_id"));
+                                        editor.commit();
+                                        Intent intent = new Intent(LoginPages.this, MainActivity.class);
+                                        intent.putExtra("user_id", resultObject.getString("user_id"));
+                                        startActivity(intent);
+                                        finish();
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), resultObject.getString("error_message"), Toast.LENGTH_LONG).show();
+                                    }
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
                                 }
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
                             }
                         }
-                    }
-                });
+                    });
 
+                } else {
+                    Toast.makeText(getApplicationContext(), result.get("error_message"), Toast.LENGTH_LONG).show();
+                }
             } else {
-                Toast.makeText(getApplicationContext(), result.get("error_message"), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Boş Alan Bırakmayınız.", Toast.LENGTH_LONG).show();
             }
-        }else{
-            Toast.makeText(getApplicationContext(),"Boş Alan Bırakmayınız.",Toast.LENGTH_LONG).show();
+        }else{Toast.makeText(getApplicationContext(),"İnternet Bağlantınızı Kontrol Ediniz.",Toast.LENGTH_LONG).show();
+
+
+
+
         }
 
     }
