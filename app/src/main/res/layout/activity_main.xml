@@ -1,58 +1,126 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainLayout"
+    android:background="#ffffff"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#901b242e">
-
-    <FrameLayout
-
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <FrameLayout
         android:background="#ffffff"
-        android:layout_gravity="top"
-        android:padding="10dp"
-        android:layout_height="60dp">
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
         <ImageView
-            android:layout_gravity="center|left"
-            android:src="@drawable/imgpsh_fullsize"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content" />
-
-        <com.github.siyamed.shapeimageview.CircularImageView
-            android:layout_gravity="right|center"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/okan" />
-    </FrameLayout>
-    <ImageView
-        android:layout_gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:id="@+id/imageView"/>
-
-    <FrameLayout
-
-        android:layout_gravity="bottom"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="#ffffff"
-        android:id="@+id/bottomLayout">
-        <ImageButton
-            android:layout_gravity="center|left"
-            android:layout_margin="10dp"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:background="@drawable/las_pay" />
-        <ImageButton
-            android:layout_gravity="center|right"
-            android:layout_margin="10dp"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:background="@drawable/setting" />
-        <ImageButton
-            android:id="@+id/btnPayponse"
             android:layout_gravity="center"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/button_qr" />
-
+            android:background="@drawable/logo"
+            android:layout_width="150dp"
+            android:layout_height="30dp" />
     </FrameLayout>
+        <FrameLayout
+            android:background="#202b37"
+            android:layout_width="match_parent"
+            android:layout_height="250dp">
+            <ImageView
+                android:id="@+id/plusView"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/plus_square"/>
+            <HorizontalScrollView
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="200dp">
+                <LinearLayout
+                    android:id="@+id/cardContainer"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </LinearLayout>
+            </HorizontalScrollView>
+        </FrameLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_margin="10dp"
+                android:textStyle="normal"
+                android:textColor="#FFCC33"
+                android:textSize="18dp"
+                android:layout_gravity="center"
+                android:text="İŞLEM GEÇMİŞİ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <FrameLayout
+            android:background="@drawable/border"
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_gravity="center|right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="25 mart 2015"
+                android:textSize="15dp"/>
+        </FrameLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <FrameLayout
+            android:background="@drawable/footer_bar"
+            android:layout_width="match_parent"
+            android:layout_height="80dp">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_margin="10dp"
+                android:layout_gravity="bottom|left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/addCart"
+                    android:background="@drawable/add_cart"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp" />
+                <Button
+                    android:id="@+id/lastPay"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/pay_last"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp" />
+           </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_margin="10dp"
+                android:layout_gravity="bottom|right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/profile"
+                    android:layout_marginRight="25dp"
+                    android:background="@drawable/profile"
+                    android:layout_width="40dp"
+                    android:layout_height="35dp" />
+                <Button
+                    android:background="@drawable/settings"
+                    android:layout_width="40dp"
+                    android:layout_height="30dp" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnQrReader"
+                android:layout_marginTop="-10dp"
+                android:background="#00000000"
+                android:layout_gravity="center"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+
+        </FrameLayout>
+    </LinearLayout>
+
 </FrameLayout>

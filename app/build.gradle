@@ -5,8 +5,8 @@ android {
     buildToolsVersion "23.0.2"
 
     defaultConfig {
-        applicationId "app.android.payponseapp"
-        minSdkVersion 14
+        applicationId "payponse.android.com.payponse"
+        minSdkVersion 16
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -22,9 +22,13 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.android.support:design:23.2.1'
+    compile 'com.android.support:appcompat-v7:23.2.1'
     compile 'com.jakewharton:butterknife:7.0.1'
-    compile 'com.android.support:support-v4:23.1.1'
-    compile 'com.github.siyamed:android-shape-imageview:0.9.+@aar'
+    compile 'com.loopj.android:android-async-http:1.4.9'
+    compile 'com.android.support:support-v4:23.2.1'
+    compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.dlazaro66.qrcodereaderview:qrcodereaderview:1.0.0'
+    compile 'com.movile:creditcardguide:1.2-beta'
+    compile 'com.android.support:recyclerview-v7:23.2.1'
 }

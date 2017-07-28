@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="creditcardguide-1.2-beta">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.movile/creditcardguide/1.2-beta/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.movile/creditcardguide/1.2-beta/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.movile/creditcardguide/1.2-beta/20b0b2b8421e20fb766c2df7129cc465a49ca3cb/creditcardguide-1.2-beta-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

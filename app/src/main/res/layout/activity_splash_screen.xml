@@ -3,7 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_login"
-    tools:context="app.android.payponseapp.pages.SplashScreen">
+    tools:context="payponse.android.com.payponse.Pages.SplashScreen">
+    <ImageView
+        android:id="@+id/splashMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </RelativeLayout>
